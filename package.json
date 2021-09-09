@@ -1,0 +1,29 @@
+{
+  "name": "@tesseract-media/tesseract-crypto",
+  "version": "1.0.9",
+  "description": "Library for tesseract to interact with crypto providers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dakota Brown",
+  "license": "UNLICENSED",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tesseract-media/tesseract-crypto.git"
+  },
+  "keywords": [
+    "serverless",
+    "middleware"
+  ],
+  "bugs": {
+    "url": "https://github.com/tesseract-media/tesseract-crypto/issues"
+  },
+  "homepage": "https://github.com/tesseract-media/tesseract-crypto#readme",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "object-hash": "^2.0.3",
+    "path": "^0.12.7"
+  }
+}
