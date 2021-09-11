@@ -32,11 +32,11 @@ describe('Web3 Provider Tests', () => {
         const tokenAddress =  "0x0d8775f648430679a709e98d2b0cb6250d2887ef" // BAT
     
         // when
-        const providers = await CryptoService.getBalance(providerId, walletAddress, tokenAddress)
+        const balance = await CryptoService.getBalance(providerId, walletAddress, tokenAddress)
     
         // then
-        expect(providers).toBeGreaterThan(0)
+        expect(balance).toBeGreaterThan(0)
     
     })
-            
+
 })
