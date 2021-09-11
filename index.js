@@ -1,3 +1,3 @@
-const service = require('./src/api-helpers')
+const service = require('./src/service')
 
-module.exports = { ...service }
+module.exports = service
