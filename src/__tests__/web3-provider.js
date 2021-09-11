@@ -39,5 +39,13 @@ describe('Web3 Provider Tests', () => {
     
     })
     
+
+    test('should fail', async () => {
+    
+        // then
+        expect(true).toBe(false)
+    
+    })
+    
         
 })
