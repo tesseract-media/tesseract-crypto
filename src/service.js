@@ -41,14 +41,17 @@ exports.signMessage = async (providerId, walletAddress, msg) => {
 exports.generateSubmission = async (providerId, walletAddress, tokenBalanceAddress, msg) => {
     const provider = resolveProvider(providerId)
     const tokenBalance = await provider.getBalance(walletAddress, tokenBalanceAddress)
-    const payload = {
+    const submission = await provider.signMessage(walletAddress, msg)
+
+    const response = {
         tokenBalanceAddress,
         walletAddress,
         tokenBalance,
         message: msg,
+        verification: submission
     }
-    const submission = await provider.signMessage(walletAddress, payload)
-    return submission
+
+    return response
 }
 
 exports.verifyMessage = async (providerId, payload, signature, walletAddress) => {
