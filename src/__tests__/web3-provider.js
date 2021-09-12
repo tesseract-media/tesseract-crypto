@@ -39,5 +39,4 @@ describe('Web3 Provider Tests', () => {
     
     })
 
-
 })

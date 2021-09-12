@@ -28,7 +28,7 @@ exports.getBalance = async (walletAddress, tokenBalanceAddress) => {
 
 exports.signMessage = async (walletAddress, payload) => {
     const web3Provider = new Web3(window.ethereum)
-    const signature = await web3Provider.eth.personal.sign(payload, walletAddress)
+    const signature = await web3Provider.eth.personal.sign(payload.toString(), walletAddress)
     const signedMessage = {
         walletAddress,
         signature,

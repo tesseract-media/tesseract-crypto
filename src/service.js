@@ -24,7 +24,8 @@ exports.getProviders = () => {
 
 exports.getAccounts = async (providerId) => {
     const provider = resolveProvider(providerId)
-    return provider.getAccounts()
+    const accounts = await provider.getAccounts()
+    return accounts
 }
 
 exports.getBalance = async (providerId, walletAddress, tokenBalanceAddress) => {
@@ -32,9 +33,9 @@ exports.getBalance = async (providerId, walletAddress, tokenBalanceAddress) => {
     return provider.getBalance(walletAddress, tokenBalanceAddress)
 }
 
-exports.signMessage = async (providerId, walletAddress, tokenBalanceAddress, msg) => {
+exports.signMessage = async (providerId, walletAddress, msg) => {
     const provider = resolveProvider(providerId)
-    return provider.signMessage(walletAddress, tokenBalanceAddress, msg)
+    return provider.signMessage(walletAddress, msg)
 }
 
 exports.generateSubmission = async (providerId, walletAddress, tokenBalanceAddress, msg) => {
