@@ -1,6 +1,6 @@
 {
   "name": "@tesseract-media/tesseract-crypto",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Library for tesseract to interact with crypto providers",
   "main": "index.js",
   "scripts": {
