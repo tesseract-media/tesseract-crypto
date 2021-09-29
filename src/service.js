@@ -4,13 +4,20 @@ const PROVIDER = {
     WEB3: {
         Id: "WEB3",
         DisplayName: "Web3",
-    }
+    },
+    WEB3_TEST: {
+        Id: "WEB3_TEST",
+        DisplayName: "Web3 - Ropsten",
+    },
+    
 }
 
 const resolveProvider = (providerId) => {
     switch (providerId) {
         case PROVIDER.WEB3.Id:
-            return { ...PROVIDER.WEB3, ...web3 }
+            return { ...PROVIDER.WEB3, isProd: true, ...web3 }
+        case PROVIDER.WEB3_TEST.Id:
+            return { ...PROVIDER.WEB3_TEST, isProd: false, ...web3 }
         default:
             return { ...PROVIDER.WEB3, ...web3 }
     }
@@ -30,7 +37,7 @@ exports.getAccounts = async (providerId) => {
 
 exports.getBalance = async (providerId, walletAddress, tokenBalanceAddress) => {
     const provider = resolveProvider(providerId)
-    return provider.getBalance(walletAddress, tokenBalanceAddress)
+    return provider.getBalance(provider, walletAddress, tokenBalanceAddress)
 }
 
 exports.signMessage = async (providerId, walletAddress, msg) => {
@@ -40,8 +47,8 @@ exports.signMessage = async (providerId, walletAddress, msg) => {
 
 exports.generateSubmission = async (providerId, walletAddress, tokenBalanceAddress, msg) => {
     const provider = resolveProvider(providerId)
-    const tokenBalance = await provider.getBalance(walletAddress, tokenBalanceAddress)
-    const submission = await provider.signMessage(walletAddress, msg)
+    const tokenBalance = await provider.getBalance(provider, walletAddress, tokenBalanceAddress)
+    const submission = await provider.signMessage(provider, walletAddress, msg)
 
     const response = {
         tokenBalanceAddress,
@@ -56,5 +63,6 @@ exports.generateSubmission = async (providerId, walletAddress, tokenBalanceAddre
 
 exports.verifyMessage = async (providerId, payload, signature, walletAddress) => {
     const provider = resolveProvider(providerId)
-    return provider.verifyMessage(payload, signature, walletAddress)
+    const { isProd } = provider
+    return provider.verifyMessage(isProd, payload, signature, walletAddress)
 }
